@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Employee = require('./employeeModel.js');
+const Employee = require('./Employee.js');
 
 const visitorSchema = new mongoose.Schema({
   visitorName: {
