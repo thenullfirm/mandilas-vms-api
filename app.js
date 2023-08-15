@@ -6,9 +6,9 @@ const cors = require('cors');
 require('dotenv').config();
 
 // Configure routes
-const employeeRoutes = require('./routes/employeeRoutes');
-const visitorRoutes = require('./routes/visitorRoutes');
-const adminRoutes = require('./routes/adminRoutes');
+const employeeRoutes = require('./src/routes/employeeRoutes');
+const visitorRoutes = require('./src/routes/visitorRoutes');
+const adminRoutes = require('./src/routes/adminRoutes');
 
 const app = express();
 

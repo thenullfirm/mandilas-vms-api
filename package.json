@@ -2,10 +2,13 @@
   "name": "mandilas-vms-api",
   "version": "1.0.0",
   "description": "API - Visitor Management System",
-  "main": "./src/app.js",
+  "main": "app.js",
+  "engines": {
+    "node": ">=14.20.1"
+  },
   "scripts": {
-    "start": "node ./src/app.js",
-    "dev": "nodemon ./src/app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": "https://github.com/thenullfirm/mandilas-vms-api",
   "author": "nullthefirst <tey@nullnow.com>",
