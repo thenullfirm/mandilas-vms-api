@@ -1,7 +1,6 @@
 // Set up packages
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -25,7 +24,6 @@ mongoose
   .catch((error) => console.error('MongoDB connection error:', error));
 
 // Middleware
-app.use(bodyParser.json());
 app.use(cors({ origin: true, credentials: true }));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
