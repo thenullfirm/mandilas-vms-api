@@ -40,7 +40,9 @@ app.listen(port, () => {
 });
 
 // Use the routes
-app.get('/', (req, res) => res.send('Welcome to the Visitor Management System'));
+app.get('/', (req, res) => {
+  res.send({ info: 'Welcome to the Visitor Management System' });
+});
 app.use('/employees', employeeRoutes);
 app.use('/visitors', visitorRoutes);
 app.use('/admins', adminRoutes);
