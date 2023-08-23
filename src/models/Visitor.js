@@ -9,7 +9,6 @@ const visitorSchema = new mongoose.Schema({
   visitorEmail: {
     type: String,
     required: true,
-    unique: true,
   },
   timeOfVisit: {
     type: Date,
