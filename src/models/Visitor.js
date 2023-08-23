@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Employee = require('./Employee');
+const Schedule = require('./Schedule');
 
 const visitorSchema = new mongoose.Schema({
   visitorName: {
@@ -10,14 +10,7 @@ const visitorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  timeOfVisit: {
-    type: Date,
-    required: true,
-  },
-  employee: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Employee',
-  },
+  visits: [Schedule.schema],
 });
 
 const Visitor = mongoose.model('Visitor', visitorSchema);
