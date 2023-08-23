@@ -5,7 +5,7 @@ exports.login = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const admin = await Administrative.findOne({ username });
+    let admin = await Administrative.findOne({ username });
     if (!admin) {
       return res.status(401).json({ message: 'User not found' });
     }
@@ -13,7 +13,15 @@ exports.login = async (req, res) => {
     const passwordMatch = await admin.comparePassword(password);
     if (passwordMatch) {
       // Handle successful login, e.g., create a session
-      return res.status(200).json({ message: 'Login successful' });
+
+      admin
+        .findByIdAndUpdate(admin._id, { $set: { loggedIn: true } }, { new: true })
+        .then((adminLoggedIn) => {
+          return res.status(200).json({ message: 'Login successful' });
+        })
+        .catch((error) => {
+          return res.status(401).json({ message: `Error: ${error}` });
+        });
     } else {
       return res.status(401).json({ message: 'Invalid password' });
     }

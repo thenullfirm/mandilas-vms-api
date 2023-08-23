@@ -12,6 +12,9 @@ const administrativeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  loggedIn: {
+    type: Boolean,
+  },
 });
 
 // Hash the password before saving it to the database
