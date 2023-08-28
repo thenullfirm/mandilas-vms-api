@@ -45,4 +45,4 @@ app.get('/', (req, res) => {
 });
 app.use('/employees', employeeRoutes);
 app.use('/visitors', visitorRoutes);
-app.use('/admins', adminRoutes);
+app.use('/admin', adminRoutes);
