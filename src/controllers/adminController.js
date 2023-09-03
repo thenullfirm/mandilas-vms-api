@@ -10,10 +10,8 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'User not found' });
     }
 
-    const passwordMatch = await admin.comparePassword(password);
+    const passwordMatch = await (password === admin.password);
     if (passwordMatch) {
-      // Handle successful login, e.g., create a session
-
       admin
         .findByIdAndUpdate(admin._id, { $set: { loggedIn: true } }, { new: true })
         .then((adminLoggedIn) => {
