@@ -12,10 +12,9 @@ exports.login = async (req, res) => {
 
     const passwordMatch = await (password === admin.password);
     if (passwordMatch) {
-      admin
-        .findByIdAndUpdate(admin._id, { $set: { loggedIn: true } }, { new: true })
+      Administrative.findByIdAndUpdate(admin._id, { $set: { loggedIn: true } }, { new: true })
         .then((adminLoggedIn) => {
-          return res.status(200).json({ message: 'Login successful' });
+          return res.status(200).json({ message: 'Login successful', info: adminLoggedIn });
         })
         .catch((error) => {
           return res.status(401).json({ message: `Error: ${error}` });
