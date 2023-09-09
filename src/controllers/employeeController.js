@@ -29,6 +29,19 @@ exports.getAllEmployees = async (req, res) => {
   }
 };
 
+// Get employee by ID
+exports.getOneEmployee = async (req, res) => {
+  const employeeId = req.params.id;
+
+  try {
+    const selectedEmployee = await Employee.findById(employeeId);
+    res.status(200).json(selectedEmployee);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 // Update an employee by ID
 exports.updateEmployee = async (req, res) => {
   const { employeeName, employeeEmail } = req.body;
