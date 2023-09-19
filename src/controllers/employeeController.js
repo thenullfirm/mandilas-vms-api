@@ -3,6 +3,7 @@ const Employee = require('../models/Employee');
 // Create a new employee
 exports.createEmployee = async (req, res) => {
   const { employeeName, employeeEmail } = req.body;
+  console.log([employeeName, employeeEmail]);
 
   try {
     const newEmployee = new Employee({
@@ -21,7 +22,7 @@ exports.createEmployee = async (req, res) => {
 // Get all employees
 exports.getAllEmployees = async (req, res) => {
   try {
-    const employees = await Employee.find();
+    const employees = await Employee.find().sort({ employeeName: 1 });
     res.status(200).json(employees);
   } catch (error) {
     console.error(error);
