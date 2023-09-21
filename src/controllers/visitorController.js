@@ -1,11 +1,16 @@
 const Visitor = require('../models/Visitor');
 const Schedule = require('../models/Schedule');
+const Employee = require('../models/Employee');
+const sendEmail = require('../config/sendEmail');
 
 // Create a new visitor
 exports.createVisitor = async (req, res) => {
   const { visitorName, visitorEmail, timeOfVisit, employee } = req.body;
 
   try {
+    const employeeData = await Employee.findById(employee);
+    const { employeeName, employeeEmail } = employeeData;
+
     const newSchedule = new Schedule({
       timeOfVisit,
       employee,
@@ -36,6 +41,8 @@ exports.createVisitor = async (req, res) => {
         { $push: { visits: savedSchedule } },
         { new: true }
       );
+
+      sendEmail([visitorName, visitorEmail], [employeeName, employeeEmail], timeOfVisit);
 
       res.status(201).json(visitorWithSchedule);
     }
